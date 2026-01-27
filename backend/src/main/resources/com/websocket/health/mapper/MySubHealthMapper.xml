@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.websocket.health.mapper.MySubHealthMapper">
+    <select id="querySubHealth" resultType="com.websocket.health.pojo.SubHealth">
+        <bind name="arg0" value="'%' + arg0 + '%'"/>
+        select * from health.sub_health where name like #{arg0} or symptom like #{arg0}
+    </select>
+    <select id="querySubHealthByFrequent" resultType="com.websocket.health.pojo.SubHealth">
+        select * from health.sub_health where id in (select article_subhealth.sub_health_id from health.article_subhealth group by sub_health_id having count(sub_health_id) > 1 order by count(sub_health_id) desc)
+    </select>
+    <select id="querySubHealthByArticle" resultType="com.websocket.health.pojo.SubHealth">
+        select * from health.sub_health where id in (select article_subhealth.sub_health_id from health.article_subhealth where article_id=#{arg0})
+    </select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.websocket.health.mapper.MyOrderMapper">
+    <delete id="deleteByUser">
+        delete from health.`order` where user_id=#{param1}
+    </delete>
+    <select id="findAll" resultType="com.websocket.health.pojo.Order">
+        select a.id as id,
+               user_id,
+               number,
+               rq,
+               address,
+               phone,
+               food_id,
+               b.name as foodName,
+               state
+        from health.`order` as a
+        left join health.medicated_food as b on a.food_id=b.id
+        where 1=1
+        <if test="param1!=null">
+            and user_id=#{param1}
+        </if>
+    </select>
+    <select id="MaxId" resultType="java.lang.Integer">
+        select max(id) from health.`order`
+    </select>
+</mapper>

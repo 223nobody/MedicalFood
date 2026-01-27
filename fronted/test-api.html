@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API 测试页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #result {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f4f4f4;
+        border-radius: 4px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .success {
+        color: green;
+        font-weight: bold;
+      }
+      .error {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>医疗食品系统 - API 接口测试</h1>
+    <p>后端地址: <strong>http://localhost:9090</strong></p>
+    <p>前端地址: <strong>http://localhost:5174</strong></p>
+
+    <h2>测试接口</h2>
+    <button onclick="testFrequentSubHealth()">测试：查询常见亚健康症状</button>
+    <button onclick="testSubHealthQuery()">测试：查询亚健康信息</button>
+    <button onclick="testMedicatedFood()">测试：查询药膳列表</button>
+    <button onclick="testBenefit()">测试：查询功效列表</button>
+    <button onclick="testArticle()">测试：查询文章列表</button>
+
+    <h2>测试结果</h2>
+    <div id="result">点击上方按钮测试接口...</div>
+
+    <script>
+      const resultDiv = document.getElementById('result')
+
+      function displayResult(title, data, isError = false) {
+        const timestamp = new Date().toLocaleString('zh-CN')
+        const statusClass = isError ? 'error' : 'success'
+        const status = isError ? '❌ 失败' : '✅ 成功'
+
+        resultDiv.innerHTML = `
+<span class="${statusClass}">[${timestamp}] ${title} - ${status}</span>
+
+${JSON.stringify(data, null, 2)}
+            `
+      }
+
+      async function testFrequentSubHealth() {
+        try {
+          const response = await axios.get('http://localhost:9090/subHealth/frequent')
+          displayResult('查询常见亚健康症状', response.data)
+        } catch (error) {
+          displayResult(
+            '查询常见亚健康症状',
+            {
+              error: error.message,
+              details: error.response?.data || '无响应数据'
+            },
+            true
+          )
+        }
+      }
+
+      async function testSubHealthQuery() {
+        try {
+          const response = await axios.get('http://localhost:9090/subHealth?queryName=')
+          displayResult('查询亚健康信息', response.data)
+        } catch (error) {
+          displayResult(
+            '查询亚健康信息',
+            {
+              error: error.message,
+              details: error.response?.data || '无响应数据'
+            },
+            true
+          )
+        }
+      }
+
+      async function testMedicatedFood() {
+        try {
+          const response = await axios.get('http://localhost:9090/medicatedFood?queryName=')
+          displayResult('查询药膳列表', response.data)
+        } catch (error) {
+          displayResult(
+            '查询药膳列表',
+            {
+              error: error.message,
+              details: error.response?.data || '无响应数据'
+            },
+            true
+          )
+        }
+      }
+
+      async function testBenefit() {
+        try {
+          const response = await axios.get('http://localhost:9090/benefit')
+          displayResult('查询功效列表', response.data)
+        } catch (error) {
+          displayResult(
+            '查询功效列表',
+            {
+              error: error.message,
+              details: error.response?.data || '无响应数据'
+            },
+            true
+          )
+        }
+      }
+
+      async function testArticle() {
+        try {
+          const response = await axios.get('http://localhost:9090/article')
+          displayResult('查询文章列表', response.data)
+        } catch (error) {
+          displayResult(
+            '查询文章列表',
+            {
+              error: error.message,
+              details: error.response?.data || '无响应数据'
+            },
+            true
+          )
+        }
+      }
+
+      // 页面加载时自动测试一个接口
+      window.onload = function () {
+        console.log('页面加载完成，准备测试接口...')
+        testFrequentSubHealth()
+      }
+    </script>
+  </body>
+</html>

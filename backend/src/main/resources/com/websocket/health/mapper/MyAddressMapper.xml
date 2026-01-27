@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.websocket.health.mapper.MyAddressMapper">
+    <delete id="deleteByUser">
+        delete from health.address where user_id=#{param1}
+    </delete>
+    <select id="findAll" resultType="com.websocket.health.pojo.Address">
+        select * from health.address where user_id=#{param1}
+    </select>
+    <select id="MaxId" resultType="java.lang.Integer">
+        select MAX(id) from health.address
+    </select>
+</mapper>

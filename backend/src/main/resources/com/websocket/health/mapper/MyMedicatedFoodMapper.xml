@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.websocket.health.mapper.MyMedicatedFoodMapper">
+    <select id="queryMedicatedFood" resultType="com.websocket.health.pojo.MedicatedFood">
+        <bind name="arg0" value="'%'+arg0+'%'"/>
+        select * from health.medicated_food where name like #{arg0} or introduce like #{arg0}
+    </select>
+    <select id="queryMedicatedFoodBySubHealth" resultType="com.websocket.health.pojo.MedicatedFood">
+        select * from health.medicated_food where id in (select medicated_food from health.subhealth_medicatedfood where sub_health_id=#{arg0})
+    </select>
+    <select id="queryMedicatedFoodByBenefit" resultType="com.websocket.health.pojo.MedicatedFood">
+        select * from health.medicated_food where id in (select food_benefit.food_id from health.food_benefit where benefit_id=#{param1})
+    </select>
+    <select id="queryMedicatedFoodByOrder" resultType="com.websocket.health.pojo.MedicatedFood">
+        select * from health.medicated_food where id in (select food_id from health.`order` group by food_id order by count(food_id) desc)
+    </select>
+</mapper>
