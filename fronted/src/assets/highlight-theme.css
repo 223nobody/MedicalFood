@@ -1,0 +1,180 @@
+/* 
+ * Highlight.js 自定义主题
+ * 基于 GitHub Dark 主题优化
+ */
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    background: transparent;
+    color: #e2e8f0;
+}
+
+/* 注释 */
+.hljs-comment,
+.hljs-quote {
+    color: #8b949e;
+    font-style: italic;
+}
+
+/* 关键字 */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+    color: #ff7b72;
+}
+
+/* 字符串 */
+.hljs-string,
+.hljs-meta .hljs-string {
+    color: #a5d6ff;
+}
+
+/* 数字 */
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+    color: #79c0ff;
+}
+
+/* 函数名 */
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+    color: #d2a8ff;
+}
+
+/* 属性 */
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-params {
+    color: #ffa657;
+}
+
+/* 类型 */
+.hljs-type,
+.hljs-built_in,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-template-tag,
+.hljs-name,
+.hljs-builtin-name {
+    color: #7ee787;
+}
+
+/* 符号 */
+.hljs-symbol,
+.hljs-bullet,
+.hljs-code,
+.hljs-meta,
+.hljs-selector-class {
+    color: #79c0ff;
+}
+
+/* 正则表达式 */
+.hljs-regexp,
+.hljs-link {
+    color: #a5d6ff;
+}
+
+/* 删除 */
+.hljs-deletion {
+    color: #ffa198;
+    background-color: #490202;
+}
+
+/* 强调 */
+.hljs-emphasis {
+    font-style: italic;
+}
+
+/* 加粗 */
+.hljs-strong {
+    font-weight: bold;
+}
+
+/* 标签 */
+.hljs-tag {
+    color: #7ee787;
+}
+
+/* 操作符 */
+.hljs-operator,
+.hljs-punctuation {
+    color: #ff7b72;
+}
+
+/* 特殊 */
+.hljs-subst,
+.hljs-section {
+    color: #e2e8f0;
+}
+
+/* 元信息 */
+.hljs-meta-keyword {
+    color: #ff7b72;
+}
+
+/* 文档标签 */
+.hljs-doctag {
+    color: #d2a8ff;
+}
+
+/* 公式 */
+.hljs-formula {
+    background-color: #1c2128;
+    color: #e2e8f0;
+}
+
+/* 语言特定样式 */
+.hljs-selector-pseudo,
+.hljs-selector-attr {
+    color: #79c0ff;
+}
+
+/* Python 特定 */
+.hljs-decorator,
+.hljs-meta .hljs-keyword {
+    color: #ffa657;
+}
+
+/* JavaScript/TypeScript 特定 */
+.hljs-built_in {
+    color: #79c0ff;
+}
+
+/* CSS 特定 */
+.hljs-selector-class {
+    color: #d2a8ff;
+}
+
+.hljs-selector-id {
+    color: #7ee787;
+}
+
+/* HTML 特定 */
+.hljs-tag .hljs-name {
+    color: #7ee787;
+}
+
+.hljs-tag .hljs-attr {
+    color: #79c0ff;
+}
+
+/* JSON 特定 */
+.hljs-attr {
+    color: #79c0ff;
+}
+
+/* SQL 特定 */
+.hljs-keyword {
+    color: #ff7b72;
+    font-weight: bold;
+}
+

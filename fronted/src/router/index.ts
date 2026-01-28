@@ -90,6 +90,16 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/chat',
+    name: 'chat',
+    component: () => import('@/views/chat.vue'),
+    meta: {
+      title: 'AI 智能对话',
+      requiresAuth: false,
+      transition: 'slide-left'
+    }
+  },
+  {
     path: '/ttt',
     name: 'ttt',
     component: () => import('@/views/ttt.vue'),

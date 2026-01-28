@@ -124,6 +124,12 @@
                   </t-button>
                   <h2>用 &nbsp;户</h2>
                 </div>
+                <div class="footer-div" @click="goToChat">
+                  <t-button shape="circle" theme="primary" class="footer-button">
+                    <icon name="chat" size="30px" />
+                  </t-button>
+                  <h2>AI对话</h2>
+                </div>
               </div>
             </t-footer>
           </t-layout>
@@ -353,6 +359,10 @@ const title2: CardProps['title'] = '药膳功效'
 
 const goToDocumentation = () => {
   router.push('/article')
+}
+
+const goToChat = () => {
+  router.push('/chat')
 }
 
 const login = localStorage.getItem('isLoggedIn')
