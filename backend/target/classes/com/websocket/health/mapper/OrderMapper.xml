@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.websocket.health.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.websocket.health.pojo.Order">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="foodId" column="food_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="rq" column="rq" jdbcType="TIMESTAMP"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,food_id,user_id,
+        number,rq,address,
+        phone,state
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `order`
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from `order`
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.websocket.health.pojo.Order" useGeneratedKeys="true">
+        insert into `order`
+        ( id,food_id,user_id
+        ,number,rq,address
+        ,phone,state)
+        values (#{id,jdbcType=INTEGER},#{foodId,jdbcType=INTEGER},#{userId,jdbcType=INTEGER}
+        ,#{number,jdbcType=INTEGER},#{rq,jdbcType=TIMESTAMP},#{address,jdbcType=VARCHAR}
+        ,#{phone,jdbcType=VARCHAR},#{state,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.websocket.health.pojo.Order" useGeneratedKeys="true">
+        insert into `order`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="foodId != null">food_id,</if>
+                <if test="userId != null">user_id,</if>
+                <if test="number != null">number,</if>
+                <if test="rq != null">rq,</if>
+                <if test="address != null">address,</if>
+                <if test="phone != null">phone,</if>
+                <if test="state != null">state,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="foodId != null">#{foodId,jdbcType=INTEGER},</if>
+                <if test="userId != null">#{userId,jdbcType=INTEGER},</if>
+                <if test="number != null">#{number,jdbcType=INTEGER},</if>
+                <if test="rq != null">#{rq,jdbcType=TIMESTAMP},</if>
+                <if test="address != null">#{address,jdbcType=VARCHAR},</if>
+                <if test="phone != null">#{phone,jdbcType=VARCHAR},</if>
+                <if test="state != null">#{state,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.websocket.health.pojo.Order">
+        update `order`
+        <set>
+                <if test="foodId != null">
+                    food_id = #{foodId,jdbcType=INTEGER},
+                </if>
+                <if test="userId != null">
+                    user_id = #{userId,jdbcType=INTEGER},
+                </if>
+                <if test="number != null">
+                    number = #{number,jdbcType=INTEGER},
+                </if>
+                <if test="rq != null">
+                    rq = #{rq,jdbcType=TIMESTAMP},
+                </if>
+                <if test="address != null">
+                    address = #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    phone = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="state != null">
+                    state = #{state,jdbcType=INTEGER},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.websocket.health.pojo.Order">
+        update `order`
+        set 
+            food_id =  #{foodId,jdbcType=INTEGER},
+            user_id =  #{userId,jdbcType=INTEGER},
+            number =  #{number,jdbcType=INTEGER},
+            rq =  #{rq,jdbcType=TIMESTAMP},
+            address =  #{address,jdbcType=VARCHAR},
+            phone =  #{phone,jdbcType=VARCHAR},
+            state =  #{state,jdbcType=INTEGER}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>
